@@ -75,7 +75,7 @@
         <div class="section">
             <div class="section-title">CC Controls</div>
             <div *ngFor="let ccControl of ccControls" class="range-wrapper">
-                {{ ccControl.label }}
+                {{ ccControl.label }} (CC {{ ccControl.channel }})
                 <input
                     type="range"
                     min="1"

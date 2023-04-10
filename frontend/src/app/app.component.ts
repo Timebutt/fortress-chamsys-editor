@@ -39,7 +39,9 @@ export class AppComponent implements OnInit {
             return;
         }
 
-        this.currentMidiDevice.send([this.midiNoteStatusMap[noteNumber] ? 0x90 : 0x80, 60, 0x7f]);
+        console.log();
+
+        this.currentMidiDevice.send([this.midiNoteStatusMap[noteNumber] ? 0x80 : 0x90, noteNumber, 0x7f]);
         this.midiNoteStatusMap[noteNumber] = Boolean(!this.midiNoteStatusMap[noteNumber]);
     }
 
@@ -50,7 +52,7 @@ export class AppComponent implements OnInit {
             }
 
             const value = parseInt(event.target.value, 10);
-            this.currentMidiDevice.send([144, 60, value]);
+            this.currentMidiDevice.send([0xb0, channel, value]);
         }
     }
 
