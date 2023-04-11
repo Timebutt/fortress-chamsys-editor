@@ -42,21 +42,6 @@ p {
     margin: 0 16px;
 }
 
-.toolbar #twitter-logo {
-    height: 40px;
-    margin: 0 8px;
-}
-
-.toolbar #youtube-logo {
-    height: 40px;
-    margin: 0 16px;
-}
-
-.toolbar #twitter-logo:hover,
-.toolbar #youtube-logo:hover {
-    opacity: 0.8;
-}
-
 .content {
     display: flex;
     margin: 82px auto 32px;
@@ -218,17 +203,6 @@ a:hover {
     box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
 }
 
-button {
-    padding: 8px 16px;
-    cursor: pointer;
-    user-select: none;
-}
-
-button.note-active {
-    background-color: blue;
-    color: white;
-}
-
 .section {
     display: flex;
     flex-direction: column;
@@ -244,9 +218,16 @@ button.note-active {
 
 .button-wrapper {
     display: flex;
+    align-self: center;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 16px;
 }
 
 .range-wrapper {
     margin-bottom: 8px;
+}
+
+::ng-deep mat-slider-visual-thumb {
+    top: 0;
 }
