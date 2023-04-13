@@ -46,4 +46,12 @@ export class AppComponent implements OnInit {
             });
         }
     }
+
+    startShow() {
+        (this.midiDevicesControl.value ?? []).forEach((midiOutputDevice) => {
+            midiOutputDevice.send([0x90, 94, 0x7f]);
+            midiOutputDevice.send([0x90, 94, 0x01], 100);
+        });
+        alert('show started!');
+    }
 }
