@@ -4,7 +4,9 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "esr index.ts"
+        "start": "esr index.ts",
+        "prettier": "prettier --write '**/*.{html,js,ts,css,scss,less,md,json}'",
+        "prettier-check": "prettier --list-different '**/*.{html,js,ts,css,scss,less,md,json}'"
     },
     "author": "",
     "license": "ISC",
