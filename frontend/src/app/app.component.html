@@ -17,6 +17,8 @@
     </mat-form-field>
 
     <div class="card-container">
+        <button (click)="toggleMidi(37)">PLAYBACK 1</button>
+
         <div class="section">
             <div class="section-title">Colors</div>
             <div class="button-wrapper">
@@ -64,9 +66,9 @@
         <div class="section">
             <div class="section-title">CC Controls</div>
             <div *ngFor="let ccControl of ccControls" class="range-wrapper">
-                {{ ccControl.label }} (CC {{ ccControl.channel }})
+                {{ ccControl.label }} (Channel {{ ccControl.channel }} - CC {{ ccControl.cc }})
                 <mat-slider min="0" max="100" value="0" style="width: 300px; margin-left: 24px">
-                    <input matSliderThumb (change)="changeCCValue(ccControl.channel, $event)" />
+                    <input matSliderThumb (change)="changeCCValue(ccControl.channel, ccControl.cc, $event)" />
                     `</mat-slider
                 >
             </div>

@@ -163,37 +163,50 @@ export const animations: {
 
 export const ccControls: {
     label: string;
+    cc: number;
     channel: number;
     midiType: 'note-on' | 'note-off' | 'note-on-off' | 'cc';
     functionType: 'none' | 'pb-level' | 'cue-toggle' | 'exec-toggle';
 }[] = [
     {
         label: 'PLAYBACK - Logo Intensity',
+        cc: 1,
         channel: 1,
         midiType: 'cc',
         functionType: 'pb-level',
     },
     {
         label: 'PLAYBACK - Sunstrips Intensity',
-        channel: 3,
+        cc: 3,
+        channel: 1,
         midiType: 'cc',
         functionType: 'pb-level',
     },
     {
         label: 'PLAYBACK - Washes Intensity',
-        channel: 4,
+        cc: 4,
+        channel: 1,
         midiType: 'cc',
         functionType: 'pb-level',
     },
     {
         label: 'PLAYBACK - Strobes Intensity',
-        channel: 5,
+        cc: 5,
+        channel: 1,
         midiType: 'cc',
         functionType: 'pb-level',
     },
     {
         label: 'PLAYBACK - Strobes Speed',
-        channel: 6,
+        cc: 6,
+        channel: 1,
+        midiType: 'cc',
+        functionType: 'pb-level',
+    },
+    {
+        label: 'PLAYBACK - Beamz Intensity',
+        channel: 2,
+        cc: 1,
         midiType: 'cc',
         functionType: 'pb-level',
     },

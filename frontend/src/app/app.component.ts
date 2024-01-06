@@ -12,6 +12,8 @@ export class AppComponent implements OnInit {
     readonly ccControls = ccControls;
     readonly colors = colors;
     readonly positions = positions;
+    readonly noteOn = 0x90;
+    readonly ccOn = 0xb0;
 
     midiDevicesControl = new FormControl<WebMidi.MIDIOutput[]>([]);
 
@@ -38,11 +40,11 @@ export class AppComponent implements OnInit {
         this.midiNoteStatusMap[noteNumber] = Boolean(!this.midiNoteStatusMap[noteNumber]);
     }
 
-    changeCCValue(channel: number, event: Event) {
+    changeCCValue(channel: number, cc: number, event: Event) {
         if (event.target && event.target instanceof HTMLInputElement) {
             const value = Math.round((parseInt(event.target.value, 10) / 100) * 127);
             (this.midiDevicesControl.value ?? []).forEach((midiOutputDevice) => {
-                midiOutputDevice.send([0xb0, channel, value]);
+                midiOutputDevice.send([this.ccOn + channel - 1, cc, value]);
             });
         }
     }
