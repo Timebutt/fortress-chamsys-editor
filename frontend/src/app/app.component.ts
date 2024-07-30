@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { animations, ccControls, colors, positions } from '../../../data';
+import { animations, beamzPositions, ccControls, colors, washezPositions } from '../../../data';
 
 @Component({
     selector: 'app-root',
@@ -11,13 +11,16 @@ export class AppComponent implements OnInit {
     readonly animations = animations;
     readonly ccControls = ccControls;
     readonly colors = colors;
-    readonly positions = positions;
+    readonly washezPositions = washezPositions;
+    readonly beamzPositions = beamzPositions;
+
     readonly noteOn = 0x90;
+    readonly noteOff = 0x80;
     readonly ccOn = 0xb0;
 
     midiDevicesControl = new FormControl<WebMidi.MIDIOutput[]>([]);
 
-    midiNoteStatusMap: Record<number, boolean> = {};
+    midiNoteStatusMap: Record<number, Record<number, boolean>> = { 1: {}, 2: {} };
     midiOutputDevices: WebMidi.MIDIOutput[] = [];
     title = 'frontend';
 
@@ -32,12 +35,16 @@ export class AppComponent implements OnInit {
         });
     }
 
-    toggleMidi(noteNumber: number) {
+    toggleMidi(channel: number, noteNumber: number) {
         (this.midiDevicesControl.value ?? []).forEach((midiOutputDevice) => {
-            midiOutputDevice.send([this.midiNoteStatusMap[noteNumber] ? 0x80 : 0x90, noteNumber, 0x7f]);
+            midiOutputDevice.send([
+                (this.midiNoteStatusMap[channel][noteNumber] ? this.noteOff : this.noteOn) + channel - 1,
+                noteNumber,
+                0x7f,
+            ]);
         });
 
-        this.midiNoteStatusMap[noteNumber] = Boolean(!this.midiNoteStatusMap[noteNumber]);
+        this.midiNoteStatusMap[channel][noteNumber] = Boolean(!this.midiNoteStatusMap[channel][noteNumber]);
     }
 
     changeCCValue(channel: number, cc: number, event: Event) {
