@@ -1,6 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { animations, beamzPositions, ccControls, colors, washezPositions } from '../../../data';
+import {
+    beamzAnimations,
+    beamzChases,
+    beamzPositions,
+    beamzStrobes,
+    bpms,
+    ccControls,
+    colors,
+    washezAnimations,
+    washezPositions,
+    washezStrobes,
+} from '../../../data';
 
 @Component({
     selector: 'app-root',
@@ -8,11 +19,16 @@ import { animations, beamzPositions, ccControls, colors, washezPositions } from 
     styleUrls: ['./app.component.less'],
 })
 export class AppComponent implements OnInit {
-    readonly animations = animations;
     readonly ccControls = ccControls;
     readonly colors = colors;
     readonly washezPositions = washezPositions;
+    readonly washezStrobes = washezStrobes;
+    readonly washezAnimations = washezAnimations;
     readonly beamzPositions = beamzPositions;
+    readonly beamzStrobes = beamzStrobes;
+    readonly beamzAnimations = beamzAnimations;
+    readonly beamzChases = beamzChases;
+    readonly bpms = bpms;
 
     readonly noteOn = 0x90;
     readonly noteOff = 0x80;
