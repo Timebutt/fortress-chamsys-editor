@@ -420,6 +420,20 @@ export const beamzChases = [
         functionType: 'cue-toggle',
     },
     {
+        label: 'All 1/8',
+        channel: 2,
+        note: 40,
+        midiType: 'note-on-off',
+        functionType: 'cue-toggle',
+    },
+    {
+        label: 'Doublez with Fade-Out',
+        channel: 2,
+        note: 43,
+        midiType: 'note-on-off',
+        functionType: 'cue-toggle',
+    },
+    {
         label: 'Crazy Chase',
         channel: 2,
         note: 47,
