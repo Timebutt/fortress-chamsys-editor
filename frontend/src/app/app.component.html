@@ -17,17 +17,15 @@
     </mat-form-field>
 
     <div class="card-container">
-        <button (click)="toggleMidi(37)">PLAYBACK 1</button>
-
         <div class="section">
             <div class="section-title">Colors</div>
             <div class="button-wrapper">
                 <button
                     *ngFor="let color of colors"
                     mat-raised-button
-                    [color]="midiNoteStatusMap[color.channel] ? 'primary' : 'default'"
+                    [color]="midiNoteStatusMap[color.channel][color.note] ? 'primary' : 'default'"
                     color="primary"
-                    (click)="toggleMidi(color.channel)"
+                    (click)="toggleMidi(color.channel, color.note)"
                 >
                     {{ color.label }}
                 </button>
@@ -35,14 +33,42 @@
         </div>
 
         <div class="section">
-            <div class="section-title">Animations</div>
+            <div class="section-title">Washez Positions</div>
             <div class="button-wrapper">
                 <button
-                    *ngFor="let animation of animations"
+                    *ngFor="let position of washezPositions"
                     mat-raised-button
-                    [color]="midiNoteStatusMap[animation.channel] ? 'primary' : 'default'"
+                    [color]="midiNoteStatusMap[position.channel][position.note] ? 'primary' : 'default'"
+                    (click)="toggleMidi(position.channel, position.note)"
+                >
+                    {{ position.label }}
+                </button>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Washez Strobe</div>
+            <div class="button-wrapper">
+                <button
+                    *ngFor="let position of washezStrobes"
+                    mat-raised-button
+                    [color]="midiNoteStatusMap[position.channel][position.note] ? 'primary' : 'default'"
+                    (click)="toggleMidi(position.channel, position.note)"
+                >
+                    {{ position.label }}
+                </button>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Washez Animations</div>
+            <div class="button-wrapper">
+                <button
+                    *ngFor="let animation of washezAnimations"
+                    mat-raised-button
+                    [color]="midiNoteStatusMap[animation.channel][animation.note] ? 'primary' : 'default'"
                     color="primary"
-                    (click)="toggleMidi(animation.channel)"
+                    (click)="toggleMidi(animation.channel, animation.note)"
                 >
                     {{ animation.label }}
                 </button>
@@ -50,15 +76,59 @@
         </div>
 
         <div class="section">
-            <div class="section-title">Positions</div>
+            <div class="section-title">Beamz Positions</div>
             <div class="button-wrapper">
                 <button
-                    *ngFor="let position of positions"
+                    *ngFor="let position of beamzPositions"
                     mat-raised-button
-                    [color]="midiNoteStatusMap[position.channel] ? 'primary' : 'default'"
-                    (click)="toggleMidi(position.channel)"
+                    [color]="midiNoteStatusMap[position.channel][position.note] ? 'primary' : 'default'"
+                    (click)="toggleMidi(position.channel, position.note)"
                 >
                     {{ position.label }}
+                </button>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Beamz Strobe</div>
+            <div class="button-wrapper">
+                <button
+                    *ngFor="let position of beamzStrobes"
+                    mat-raised-button
+                    [color]="midiNoteStatusMap[position.channel][position.note] ? 'primary' : 'default'"
+                    (click)="toggleMidi(position.channel, position.note)"
+                >
+                    {{ position.label }}
+                </button>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Beamz Animations</div>
+            <div class="button-wrapper">
+                <button
+                    *ngFor="let animation of beamzAnimations"
+                    mat-raised-button
+                    [color]="midiNoteStatusMap[animation.channel][animation.note] ? 'primary' : 'default'"
+                    color="primary"
+                    (click)="toggleMidi(animation.channel, animation.note)"
+                >
+                    {{ animation.label }}
+                </button>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Beamz Chases</div>
+            <div class="button-wrapper">
+                <button
+                    *ngFor="let chase of beamzChases"
+                    mat-raised-button
+                    [color]="midiNoteStatusMap[chase.channel][chase.note] ? 'primary' : 'default'"
+                    color="primary"
+                    (click)="toggleMidi(chase.channel, chase.note)"
+                >
+                    {{ chase.label }}
                 </button>
             </div>
         </div>
@@ -71,6 +141,20 @@
                     <input matSliderThumb (change)="changeCCValue(ccControl.channel, ccControl.cc, $event)" />
                     `</mat-slider
                 >
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">BPMs</div>
+            <div class="button-wrapper">
+                <button
+                    *ngFor="let bpm of bpms"
+                    mat-raised-button
+                    [color]="midiNoteStatusMap[bpm.channel][bpm.note] ? 'primary' : 'default'"
+                    (click)="toggleMidi(bpm.channel, bpm.note)"
+                >
+                    {{ bpm.label }}
+                </button>
             </div>
         </div>
     </div>
